@@ -1,0 +1,4 @@
+development:
+  password: ${YUSUKEITO58_DEV_PASSWD} 
+  theme_id: ${YUSUKEITO58_DEV_THEMEID}
+  store: ${YUSUKEITO58_DEV_SHOP}
