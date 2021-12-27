@@ -1,0 +1,21 @@
+<div
+  class="subpage_bg_img d-flex justify-content-center align-items-center"
+  style="background-image: url('{{
+    section.settings.about_header_image | img_url: '1920x'
+  }}');"
+>
+  <h2 class="f36">ABOUT</h2>
+</div>
+
+{% schema %}
+{
+  "name": "About Header Image",
+  "settings": [ 
+    {
+      "type": "image_picker",
+      "id": "about_header_image",
+      "label": "About Header Image"
+    }
+  ]
+}
+{% endschema %}
