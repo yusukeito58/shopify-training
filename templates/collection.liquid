@@ -1,18 +1,36 @@
-{% paginate collection.products by 2 %}
-  <h1>{{ collection.title }}</h1>
-  {% for product in collection.products %}
-    <div>
-      <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-      {{ product.price | money }}
-      {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
-      <a href="{{ product.url | within: collection }}">
-        <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
-      </a>
-    </div>
-  {% else %}
-    <p>no matches</p>
-  {% endfor %}
-  {% if paginate.pages > 1 %}
-    {{ paginate | default_pagination }}
-  {% endif %}
-{% endpaginate %}
+<div class="subpage_bg_img d-flex justify-content-center align-items-center"
+  style="background-image:
+  url('{% if collection.image %}{{collection.image | img_url: '1920x'}}{% else %}https://cdn.shopify.com/s/files/1/0616/9391/9456/files/b91cf97b64aa0024fb202ae28d6249c6.jpg?v=1640645520{% endif %}');">
+  <h2 class="f36">{{collection.title}}</h2>
+</div>
+{% render 'breadcrumbs' %}
+
+<div class="main">
+  {% paginate collection.products by 3 %}
+    <div class="container">
+      <div class="row row-cols-sm-3">
+        {% for product in collection.products %}
+          <a href="{{product.url | within: collection}}" class="col-sm mb-3">
+            <div class="card position-relative">
+              {% unless product.available %}<span class="f26 sold_out text-danger position-absolute">Sold
+                Out</span>{% endunless %}
+              <img class="item_list_img" src="{{product.featured_image.src | img_url: '1920x'}}" alt="">
+              <div class="card-body">
+                <p class="card-text font-weight-bold">{{product.title}}</p>
+                <p>{{product.price | money}}</p>
+              </div>
+            </div>
+          </a>
+        {% else %}
+          <p>no matches</p>
+        {% endfor %}
+      </div>
+
+      {% if paginate.pages > 1 %}
+        <nav aria-label="Page navigation example" class="pagination_nav">
+          {{ paginate | default_pagination: next: '»', previous: '«' }}
+        </nav>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</div>
