@@ -1,14 +1,32 @@
-<h1>{{ page.title }}</h1>
-{% form 'contact' %}
-  {% if form.posted_successfully? %} Thank you for your contact {% endif %}
-  {{ form.errors | default_errors }}
-  <label for="ContactFormName">name</label>
-  <input type="text" id="ContactFormName" name="contact[name]">
-  <label for="ContactFormEmail">email</label>
-  <input type="email" id="ContactFormEmail" name="contact[email]">
-  <label for="ContactFormPhone">phone</label>
-  <input type="tel" id="ContactFormPhone" name="contact[phone]">
-  <label for="ContactFormMessage">message</label>
-  <textarea rows="10" id="ContactFormMessage" name="contact[body]"></textarea>
-  <input type="submit" value="send">
-{% endform %}
+{% section 'contact-header' %}
+{% render 'breadcrumbs' %}
+<div class="main">
+  <div class="container">
+    <h3 class="text-center mb-5 f36">お問い合わせ</h3>
+
+    {% form 'contact' %}
+    {% if form.posted_successfully? %}
+    <p class="text-center">
+      お問い合わせありがとうございます。
+    </p>
+    {% endif %}
+    <div class="form-group">
+      <label for="name">名前</label>
+      <input type="text" class="form-control" id="name" placeholder="" name="contact[name]">
+    </div>
+    <div class="form-group">
+      <label for="email">メール</label>
+      <input type="email" class="form-control" id="email" placeholder="" name="contact[email]">
+    </div>
+    <div class="form-group">
+      <label for="tel">電話番号</label>
+      <input type="tel" class="form-control" id="tel" placeholder="" name="contact[phone]">
+    </div>
+    <div class="form-group">
+      <label for="content">お問い合わせ内容</label>
+      <textarea class="form-control" id="content" rows="4" name="contact[body]"></textarea>
+    </div>
+    <button type="submit" class="d-block mx-auto btn btn-secondary">送信する</button>
+    {% endform %}
+  </div>
+</div>
