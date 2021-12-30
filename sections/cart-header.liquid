@@ -1,0 +1,17 @@
+<div class="subpage_bg_img d-flex justify-content-center align-items-center"
+  style="background-image: url('{{section.settings.cart_header_image | img_url: '1920x'}}');">
+  <h2 class="f36">CART</h2>
+</div>
+
+{% schema %}
+{
+  "name":"Cart Header Image",
+  "settings": [
+    {
+      "type":"image_picker",
+      "id":"cart_header_image",
+      "label":"Cart Header Image"
+    }
+  ]
+}
+{% endschema %}
