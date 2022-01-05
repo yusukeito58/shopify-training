@@ -1,21 +1,35 @@
-<!-- /templates/customers/register.liquid -->
-
-{% form 'create_customer' %}
-
-{{ form.errors | default_errors }}
-
-<label for="first_name">First Name</label>
-<input type="text" value="" name="customer[first_name]" size="30" />
-
-<label for="last_name">Last Name</label>
-<input type="text" value="" name="customer[last_name]" size="30" />
-
-<label for="email">Email Address</label>
-<input type="email" value="" name="customer[email]" size="30" />
-
-<label for="password">Password</label>
-<input type="password" value="" name="customer[password]" size="30" />
-
-<input type="submit" value="Create" />
-
-{% endform %}
+{% section 'register-header'%}
+<div class="main mt-5">
+  <div class="container">
+    {% form 'create_customer' %} {{ form.errors | default_errors }}
+    <div class="form-group">
+      <div class="row">
+        <div class="col">
+          <label for="register_lastname">苗字</label>
+          <input id="register_lastname" type="text" class="form-control" placeholder="Last Name"
+            name="customer[last_name]">
+        </div>
+        <div class="col">
+          <label for="register_firstname">名前</label>
+          <input id="register_firstname" type="text" class="form-control" placeholder="First Name"
+            name="customer[first_name]">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="register_email">メールアドレス</label>
+      <input type="email" class="form-control" id="register_email" aria-describedby="emailHelp"
+        placeholder="Enter email" name="customer[email]">
+    </div>
+    <div class="form-group">
+      <label for="register_password">パスワード</label>
+      <input type="password" class="form-control" id="register_password" placeholder="Password"
+        name="customer[password]">
+    </div>
+    <button type="submit" class="btn btn-dark d-block mx-auto">登録</button>
+    {% endform %}
+    <div class="text-center mt-5  ">
+      <a href="/account/register" class="mx-2 d-block">ログインはこちら</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="subpage_bg_img d-flex justify-content-center align-items-center"
+  style="background-image: url('{{section.settings.register_header_image | img_url: '1920x'}}');">
+  <h2 class="f36">REGISTER</h2>
+</div>
+
+{% schema %}
+{
+  "name": "Register Header Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "register_header_image",
+      "label": "Register Header Image"
+    }
+  ]
+}
+{% endschema %}

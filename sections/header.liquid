@@ -53,6 +53,14 @@
             {% endif %}
           </li>
         {% endfor %}
+        {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+            <li class="nav-item"><a class="nav-link" href="/account/logout">Log Out</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="/account/login">Log In</a></li>
+            <li class="nav-item"><a class="nav-link" href="/account/register">Register</a></li>
+          {% endif %}
+        {% endif %}
       </ul>
       <div class="pc_menu d-flex">
         <a href="cart.html">

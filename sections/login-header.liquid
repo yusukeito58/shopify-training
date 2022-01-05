@@ -1,0 +1,17 @@
+<div class="subpage_bg_img d-flex justify-content-center align-items-center"
+  style="background-image: url('{{section.settings.login_header_image | img_url: '1920x'}}');">
+  <h2 class="f36">LOGIN</h2>
+</div>
+
+{% schema %}
+{
+  "name": "Login Header Image",
+  "settings": [
+    {
+    "type": "image_picker",
+    "id": "login_header_image",
+    "label": "Login Header Image"
+    }
+  ]
+}
+{% endschema %}
