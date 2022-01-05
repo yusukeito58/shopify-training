@@ -1,22 +1,31 @@
-{% paginate search.results by 10 %}
-  <form action="/search" method="get" role="search">
-    <input type="search" name="q" value="{{ search.terms | escape }}">
-    <button type="submit">search</button>
-  </form>
+{% section 'search-header' %}
+<div class="main">
+  {% paginate search.results by 6 %}
+  <div class="container">
+    <div class="row row-cols-sm-3">
+      {% for item in search.results %}
+      <a href="{{item.url | within: collection}}" class="col-sm mb-3">
+        <div class="card position-relative">
+          {% unless item.available %}<span class="f26 sold_out text-danger position-absolute">Sold
+            Out</span>{% endunless %}
+          <img class="item_list_img" src="{{item.featured_image.src | img_url: '1920x'}}" alt="">
+          <div class="card-body">
+            <p class="card-text font-weight-bold">{{item.title}}</p>
+            <p>{{item.price | money}}</p>
+          </div>
+        </div>
+      </a>
+      {% else %}
+      <p>no matches</p>
+      {% endfor %}
+    </div>
 
-  {% if search.performed %}
-    {% for item in search.results %}
-      {% if item.featured_image %}
-        <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
-          {{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}
-        </a>
-      {% endif %}
-      <h5>{{ item.title | link_to: item.url }}</h5>
-      <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
-    {% else %}
-      no results
-    {% endfor %}
-  {% endif %}
 
-  {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
-{% endpaginate %}
+    {% if paginate.pages > 1 %}
+    <nav aria-label="Page navigation example" class="pagination_nav">
+      {{ paginate | default_pagination: next: '»', previous: '«' }}
+    </nav>
+    {% endif %}
+    {% endpaginate %}
+  </div>
+</div>

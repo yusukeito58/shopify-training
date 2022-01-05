@@ -1,0 +1,17 @@
+<div class="mb-5 subpage_bg_img d-flex justify-content-center align-items-center"
+  style="background-image: url('{{section.settings.search_header_image | img_url: '1920x'}}');">
+  <h2 class="f36">検索結果</h2>
+</div>
+
+{% schema %}
+{
+  "name": "Search Header Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "search_header_image",
+      "label": "Search Header Image"
+    }
+  ]
+}
+{% endschema %}
