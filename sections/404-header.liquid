@@ -1,0 +1,17 @@
+<div class="subpage_bg_img d-flex justify-content-center align-items-center"
+  style="background-image: url('{{section.settings.error_header_image | img_url: '1920x'}}');">
+  <h2 class="f36">404エラー</h2>
+</div>
+
+{% schema %}
+{
+  "name": "404 Header Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "error_header_image",
+      "label": "404 Header Image"
+    }
+  ]
+}
+{% endschema %}
