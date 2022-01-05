@@ -63,7 +63,7 @@
         {% endif %}
       </ul>
       <div class="pc_menu d-flex">
-        <a href="cart.html">
+        <a href="/cart">
           <span class="navbar-text ">
             <i class="fas fa-shopping-cart fa-lg"></i>
           </span>
@@ -71,7 +71,7 @@
             カート({{ cart.item_count }})
           </span>
         </a>
-        <form>
+        <form class="search" action="/search">
           <div class="input-group ml-2">
             <input type="text" class="form-control" placeholder="検索" name="q" value="{{ search.terms | escape }}">
             <span class="input-group-btn">
