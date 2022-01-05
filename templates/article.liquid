@@ -1,41 +1,35 @@
-{% assign number_of_comments = article.comments_count %}
-{% if comment and comment.created_at %}
-  {% assign number_of_comments = article.comments_count %}
-{% endif %}
-
-<h1>{{ article.title }}</h1>
-{% capture author %}<strong>{{ article.author }}</strong>{% endcapture %}
-{% capture date %}<time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>{% endcapture %}
-{{ article.author }} @ {{ article.created_at }}
-
-<div>{{ article.content }}</div>
-{% if blog.comments_enabled? %}
-  <h2>{{ number_of_comments }} comments</h2>
-  {% paginate article.comments by 5 %}
-    {% for comment in article.comments %}
-      <div>
-        <div>{{ comment.content }}</div>
-        {{ comment.author }} @ {{ comment.created_at }}
+<div class="subpage_bg_img d-flex justify-content-center align-items-center"
+  style="background-image: url('{% if article.image %}{{article.image.src | img_url: '1920x'}}{% else %}何らかのURL{% endif %}');">
+</div>
+{% render 'breadcrumbs' %}
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="col-9">
+        <h2 class="text-center f36 mb-3">{{article.title}}</h2>
+        <div class="d-flex mb-1">
+          <small class="text-muted mr-2">{{ article.created_at}}</small>
+          <small class="text-muted mr-2">{{ article.author}}</small>
+        </div>
+        <div class="d-flex mb-1">
+          {% for tag in article.tags %}
+          <small class="text-muted mr-2">{{tag}}</small>
+          {% endfor %}
+        </div>
+        <div class="mt-5 mb-5">
+          <p>{{ article.content }}</p>
+        </div>
+        <p><a href="{{blog.url}}"><i class="fas fa-arrow-left mr-1"></i>一覧へ戻る</a></p>
       </div>
-    {% endfor %}
-    {% if paginate.pages > 1 %}
-      {{ paginate | default_pagination }}
-    {% endif %}
-  {% endpaginate %}
+      <div class="col-3">
+        <h5>カテゴリー</h5>
+        <ul>
+          {% for tag in blog.all_tags %}
+          <li class="mb-1"><a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
 
-  <div>
-    {% form 'new_comment', article %}
-      {{ form.errors | default_errors }}
-      <label for="CommentAuthor">name</label>
-      <input type="text" name="comment[author]" id="CommentAuthor" placeholder="name" value="{{ form.author }}" autocapitalize="words">
-
-      <label for="CommentEmail">email</label>
-      <input type="email" name="comment[email]" id="CommentEmail" placeholder="email" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
-
-      <label for="CommentBody">message</label>
-      <textarea name="comment[body]" id="CommentBody" placeholder="message">{{ form.body }}</textarea>
-
-      <input type="submit" value="post">
-    {% endform %}
   </div>
-{% endif %}
+</div>
